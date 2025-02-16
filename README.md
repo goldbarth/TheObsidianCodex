@@ -5,8 +5,6 @@
 As a seeker of lost knowledge, you must navigate cryptic puzzles, uncover forgotten mysteries, and piece together the forbidden texts hidden within the Abyssal Archives. 
 Combat is scarce, but the shadows conceal secrets that should never be unearthed. Will you reclaim the lost wisdom, or be consumed by the darkness that guards it?
 
-## 🔄 Recently Worked On
-
 <!-- START_RECENTLY_WORKED_ON -->
 ## 🔄 Recently Worked On
 
