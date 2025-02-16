@@ -52,11 +52,11 @@ jobs:
 
       - name: Commit and Push Changes (Profile README)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           cd profile_repo
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
           git commit -m "Auto-update Recently Worked On section (Profile)" || exit 0
-          git push origin main
+          git push https://x-access-token:${PAT_TOKEN}@github.com/goldbarth/goldbarth.git main
