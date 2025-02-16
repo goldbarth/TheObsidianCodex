@@ -55,8 +55,9 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           cd profile_repo
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "goldbarth"  # Stelle sicher, dass dein GitHub-Benutzername verwendet wird
+          git config --global user.email "your-email@example.com"  # Ersetze durch deine GitHub-E-Mail (optional)
+          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/goldbarth/goldbarth.git
           git add README.md
           git commit -m "Auto-update Recently Worked On section (Profile)" || exit 0
-          git push https://x-access-token:${PAT_TOKEN}@github.com/goldbarth/goldbarth.git main
+          git push origin main
