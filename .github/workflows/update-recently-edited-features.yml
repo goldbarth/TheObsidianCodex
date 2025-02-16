@@ -2,8 +2,8 @@
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Läuft jede Stunde
-  workflow_dispatch:  # Manuelles Auslösen möglich
+    - cron: "0 * * * *"  # Runs every hour
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   update-readme:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 10  # Holt die letzten 10 Commits für die Feature-Liste
+          fetch-depth: 30  # Get the last 10 commits for the feature list
 
       - name: Fetch Recent Feature Commits
         run: |
@@ -20,7 +20,7 @@ jobs:
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit Message | Last Updated |" >> recent_commits.md
           echo "|---------|----------------------|--------------|" >> recent_commits.md
-          git log --grep="^feat:" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+          git log --grep="^(feat:|fix:|chore:)" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md # Fetches the last 5 commits with feat:, fix:, or chore: in the commit message
 
       - name: Update Repository README
         run: |
