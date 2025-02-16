@@ -13,3 +13,8 @@ Combat is scarce, but the shadows conceal secrets that should never be unearthed
 - **All non-code assets (art, sound, text, etc.)** are licensed under **Creative Commons BY-NC-ND 4.0**  
   (see [ASSETS_LICENSE.md](ASSETS_LICENSE.md)).
 - This means you **can** use and modify the code freely but **cannot** use the assets commercially or modify them.
+## 🔄 Recently Worked On
+
+| Feature | Last Commit Message | Last Updated |
+|---------|----------------------|--------------|
+| feat: Add initial Unreal project using Top-Down template | 16 minutes ago |
