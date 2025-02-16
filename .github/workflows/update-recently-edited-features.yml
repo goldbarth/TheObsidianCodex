@@ -2,8 +2,8 @@
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Update every hour
-  workflow_dispatch:  # Update manually
+    - cron: "0 * * * *"  # Läuft jede Stunde
+  workflow_dispatch:  # Manuelles Auslösen möglich
 
 jobs:
   update-readme:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 10  # Holt die letzten 10 Commits für die Feature-Liste
 
       - name: Fetch Recent Feature Commits
         run: |
@@ -20,19 +22,40 @@ jobs:
           echo "|---------|----------------------|--------------|" >> recent_commits.md
           git log --grep="^feat:" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
 
-      - name: Update README
+      - name: Update Repository README
         run: |
-          awk '/## 🔄 Recently Worked On/ {exit} {print}' README.md > temp.md
-          cat recent_commits.md >> temp.md
-          mv temp.md README.md
+          sed -i '/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\
+          <!-- START_RECENTLY_WORKED_ON -->\n'"$(cat recent_commits.md)"'\n<!-- END_RECENTLY_WORKED_ON -->' README.md
 
-      - name: Commit and Push Changes
+      - name: Commit and Push Changes (Repo README)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git commit -m "Auto-update Recently Worked On section" || exit 0
+          git commit -m "Auto-update Recently Worked On section (Repo)" || exit 0
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git main
 
+      - name: Checkout Profile Repository
+        uses: actions/checkout@v3
+        with:
+          repository: "goldbarth/goldbarth"  # GitHub-Profile
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: profile_repo
+
+      - name: Update GitHub Profile README
+        run: |
+          sed -i '/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\
+          <!-- START_RECENTLY_WORKED_ON -->\n'"$(cat recent_commits.md)"'\n<!-- END_RECENTLY_WORKED_ON -->' profile_repo/README.md
+
+      - name: Commit and Push Changes (Profile README)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd profile_repo
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Auto-update Recently Worked On section (Profile)" || exit 0
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/goldbarth/goldbarth.git main
