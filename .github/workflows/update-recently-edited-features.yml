@@ -24,8 +24,8 @@ jobs:
 
       - name: Update Repository README
         run: |
-          sed -i '/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\
-          <!-- START_RECENTLY_WORKED_ON -->\n'"$(cat recent_commits.md)"'\n<!-- END_RECENTLY_WORKED_ON -->' README.md
+          CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          sed -i "/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\<!-- START_RECENTLY_WORKED_ON -->\n$CONTENT\n<!-- END_RECENTLY_WORKED_ON -->" README.md
 
       - name: Commit and Push Changes (Repo README)
         env:
@@ -35,7 +35,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add README.md
           git commit -m "Auto-update Recently Worked On section (Repo)" || exit 0
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git main
+          git push origin main
 
       - name: Checkout Profile Repository
         uses: actions/checkout@v3
@@ -43,11 +43,12 @@ jobs:
           repository: "goldbarth/goldbarth"  # GitHub-Profile
           token: ${{ secrets.GITHUB_TOKEN }}
           path: profile_repo
+          fetch-depth: 0  # Holt den gesamten Git-Verlauf, um Merge-Konflikte zu vermeiden
 
       - name: Update GitHub Profile README
         run: |
-          sed -i '/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\
-          <!-- START_RECENTLY_WORKED_ON -->\n'"$(cat recent_commits.md)"'\n<!-- END_RECENTLY_WORKED_ON -->' profile_repo/README.md
+          CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          sed -i "/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\<!-- START_RECENTLY_WORKED_ON -->\n$CONTENT\n<!-- END_RECENTLY_WORKED_ON -->" profile_repo/README.md
 
       - name: Commit and Push Changes (Profile README)
         env:
@@ -58,4 +59,4 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add README.md
           git commit -m "Auto-update Recently Worked On section (Profile)" || exit 0
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/goldbarth/goldbarth.git main
+          git push origin main
