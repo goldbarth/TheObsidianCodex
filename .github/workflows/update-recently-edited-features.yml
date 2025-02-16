@@ -1,0 +1,35 @@
+﻿name: Update README with Recent Features
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Update every hour
+  workflow_dispatch:  # Update manually
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Fetch Recent Feature Commits
+        run: |
+          echo "## 🔄 Recently Worked On" > recent_commits.md
+          echo "" >> recent_commits.md
+          echo "| Feature | Last Commit Message | Last Updated |" >> recent_commits.md
+          echo "|---------|----------------------|--------------|" >> recent_commits.md
+          git log --grep="^feat:" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+
+      - name: Update README
+        run: |
+          awk '/## 🔄 Recently Worked On/ {exit} {print}' README.md > temp.md
+          cat recent_commits.md >> temp.md
+          mv temp.md README.md
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Auto-update Recently Worked On section" || exit 0
+          git push
