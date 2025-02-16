@@ -20,7 +20,7 @@ jobs:
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit Message | Last Updated |" >> recent_commits.md
           echo "|---------|----------------------|--------------|" >> recent_commits.md
-          git log --grep="^(feat:|fix:|chore:)" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md # Fetches the last 5 commits with feat:, fix:, or chore: in the commit message
+          git log --grep="^feat:" -5 --pretty=format:"| %s | %ar |" >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md # Fetches the last 5 commits with feat:, fix:, or chore: in the commit message
 
       - name: Update Repository README
         run: |
