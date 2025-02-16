@@ -17,4 +17,3 @@ Combat is scarce, but the shadows conceal secrets that should never be unearthed
 
 | Feature | Last Commit Message | Last Updated |
 |---------|----------------------|--------------|
-| feat: Add initial Unreal project using Top-Down template | 16 minutes ago |
