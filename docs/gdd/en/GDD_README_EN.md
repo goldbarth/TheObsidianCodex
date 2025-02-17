@@ -63,7 +63,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ## 3. Gameplay Elements
 
-<a id="">31-character-controls-top-down-c</a>
 ### 3.1 Character Controls (Top-Down, C++)
 
 - **Movement:**
