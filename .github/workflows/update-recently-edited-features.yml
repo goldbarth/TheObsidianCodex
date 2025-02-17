@@ -16,7 +16,7 @@ jobs:
 
       - name: Fetch Recent Feature Commits
         run: |
-          echo "## 🔄 Recently Worked On" > recent_commits.md
+          echo "**🔄 Recently Worked On**" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit Message | Last Updated |" >> recent_commits.md
           echo "|---------|----------------------|--------------|" >> recent_commits.md
