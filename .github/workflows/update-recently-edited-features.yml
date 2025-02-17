@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Runs every day at midnight
+    - cron: "0 * * * *"  # Runs every hour
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -12,11 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 30  # Get the last 10 commits for the feature list
+          fetch-depth: 50  # Get the last 50 commits
 
       - name: Fetch Recent Feature Commits
         run: |
-          echo "**🔄 Recently Worked On**" > recent_commits.md
+          echo "### **🔄 Recently Worked On**" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit Message | Last Updated |" >> recent_commits.md
           echo "|---------|----------------------|--------------|" >> recent_commits.md

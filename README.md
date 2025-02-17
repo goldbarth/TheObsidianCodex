@@ -15,6 +15,11 @@ Combat is scarce, but the shadows conceal secrets that should never be unearthed
 
 ---
 
+## 🎮 Documentation
+
+- **[Game Design Document (GDD) - English](docs/gdd/en/GDD_README_EN.md)**
+- **[Game Design Document (GDD) - German](docs/gdd/de/GDD_README_DE.md)**
+
 ## License Information
 
 - **Code** is licensed under the **MIT License** (see [LICENSE](LICENSE)).
