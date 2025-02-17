@@ -16,11 +16,11 @@ jobs:
 
       - name: Fetch Recent Feature Commits
         run: |
-          echo "### **🔄 Recently Worked On**" > recent_commits.md
+          echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Updated | Workflow Updated |" >> recent_commits.md
           echo "|---------|--------------|------------------|" >> recent_commits.md
-          echo "Last workflow run: $(date '+%Y-%m-%d %H:%M:%S')" > last_run.txt
+          echo "$(date '+%Y-%m-%d %H:%M:%S')" > last_run.txt
           git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $(cat last_run.txt) |" \
           | sed -E 's/^\| feat:[[:space:]]*/| /' \
           >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
