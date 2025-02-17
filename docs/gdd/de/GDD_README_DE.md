@@ -28,7 +28,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="1-zusammenfassung-high-concept"></a>
 ## 1. Zusammenfassung (High Concept)
 
 - **Ziel:** Ein Top-Down RPG-Prototyp in Unreal, der sowohl klassische RPG-Mechaniken als auch fortschrittliche Tech-Art-Features demonstriert.
@@ -36,7 +35,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="2-zielsetzungen"></a>
 ## 2. Zielsetzungen
 
 - **Spielerlebnis:**  
@@ -59,10 +57,8 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="3-gameplay-elemente"></a>
 ## 3. Gameplay-Elemente
 
-<a id="31-charaktersteuerung-top-down-c"></a>
 ### 3.1 Charaktersteuerung (Top-Down, C++)
 
 - **Bewegung:**
@@ -84,7 +80,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
     - Erhöhung von Lebenspunkten, Angriffsstärke, Ausdauer.
     - Optional: Skillbäume oder Talentpunkte für zukünftige Erweiterungen.
 
-<a id="33-achievements-bonus-feature"></a>
 ### 3.3 Achievements (Bonus-Feature)
 
 - **Beispiele:**
@@ -97,10 +92,8 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="4-tech-art-features-phase-2"></a>
 ## 4. Tech-Art-Features (Phase 2)
 
-<a id="41-shader-basierte-effekte"></a>
 ### 4.1 Shader-basierte Effekte
 
 - **Fähigkeits-Effekte:**
@@ -111,7 +104,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
     - Dynamische Shader für Healthbars, Skill-Cooldowns und Level-Up-Anzeigen.
     - Animierte Übergänge (Pulse- oder Glow-Effekte).
 
-<a id="42-dynamische-umgebung--mini-rätsel"></a>
 ### 4.2 Dynamische Umgebung & Mini-Rätsel
 
 - **Licht- & Schattenrätsel:**
@@ -122,7 +114,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
     - Schalter, die Türen öffnen/schließen oder Fallen aktivieren.
     - Visuelles Feedback, wie Leuchten der Türen oder Materialwechsel.
 
-<a id="43-visuelle-effekte-für-status-änderungen"></a>
 ### 4.3 Visuelle Effekte für Status-Änderungen
 
 - **Level-Up:**
@@ -135,10 +126,8 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="5-ausblick-weitere-ideen-phase-3"></a>
 ## 5. Ausblick: Weitere Ideen (Phase 3)
 
-<a id="51-status-effekte-buffsdebuffs"></a>
 ### 5.1 Status-Effekte (Buffs/Debuffs)
 
 - **Basis-System:**
@@ -149,7 +138,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
     - Farbige Umrandung der Charakter-UI oder Partikeleffekte.
     - Symbol-Overlays im HUD (z. B. Flammensymbol für Feuerschaden).
 
-<a id="52-kampfsystem--schadensberechnung-c"></a>
 ### 5.2 Kampfsystem & Schadensberechnung (C++)
 
 - **Melee & Ranged Attacken:**
@@ -166,10 +154,8 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="6-technik-implementierungsdetails"></a>
 ## 6. Technik & Implementierungsdetails
 
-<a id="61-engine--tools"></a>
 ### 6.1 Engine & Tools
 
 - **Engine:**  
@@ -185,7 +171,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 - **Version Control:**  
   Git oder Perforce für die Zusammenarbeit.
 
-<a id="62-art--assets"></a>
 ### 6.2 Art & Assets
 
 - **3D-Modelle:**  
@@ -197,7 +182,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 - **UI:**  
   Minimalistisches, aber anpassbares Interface (z. B. Healthbar, EXP-Leiste, Achievements).
 
-<a id="1-zusammenfassung-high-concept"></a>
 ### 6.3 Audio (Optional erweiterbar)
 
 - **Soundeffekte:**  
@@ -208,7 +192,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="7-projektorganisation-roadmap"></a>
 ## 7. Projektorganisation & Roadmap
 
 - **Phase 1: Core Gameplay**
@@ -228,7 +211,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="8-risiken-herausforderungen"></a>
 ## 8. Risiken & Herausforderungen
 
 - **Performance:**  
@@ -242,7 +224,6 @@ Dieses Projekt ist ein Top-Down RPG-Prototyp in Unreal Engine. Er kombiniert gru
 
 ---
 
-<a id="9-anhang-weiteres"></a>
 ## 9. Anhang & Weiteres
 
 - **Dokumentation:**  

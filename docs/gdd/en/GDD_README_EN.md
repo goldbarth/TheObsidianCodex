@@ -29,7 +29,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">1-summary-high-concept</a>
 ## 1. Summary (High Concept)
 
 - **Goal:**  
@@ -40,7 +39,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">2-objectives</a>
 ## 2. Objectives
 
 - **Player Experience:**  
@@ -63,7 +61,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">3-gameplay-elements</a>
 ## 3. Gameplay Elements
 
 <a id="">31-character-controls-top-down-c</a>
@@ -77,7 +74,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
     - Context-sensitive interaction system for objects and triggers.
     - Puzzle triggers, such as mechanisms for opening doors.
 
-<a id="">32-level-system-c</a>
 ### 3.2 Level System (C++)
 
 - **Experience Points (XP):**
@@ -88,7 +84,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
     - Increases in health points, attack power, stamina, etc.
     - Optional skill tree or talent points for future expansion.
 
-<a id="">33-achievements-bonus-feature</a>
 ### 3.3 Achievements (Bonus Feature)
 
 - **Examples:**
@@ -101,10 +96,8 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">4-tech-art-features-phase-2</a>
 ## 4. Tech-Art Features (Phase 2)
 
-<a id="">41-shader-based-effects</a>
 ### 4.1 Shader-Based Effects
 
 - **Ability Effects:**
@@ -115,7 +108,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
     - Dynamic shaders for health bars, skill cooldowns, or level-up screens.
     - Animated transitions (e.g., pulsing or glow effects).
 
-<a id="">42-dynamic-environment--mini-puzzles</a>
 ### 4.2 Dynamic Environment & Mini-Puzzles
 
 - **Light & Shadow Puzzles:**
@@ -126,7 +118,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
     - Switches that open/close doors or activate traps.
     - Visual feedback such as doors glowing or changing material.
 
-<a id="">43-visual-effects-for-status-changes</a>
 ### 4.3 Visual Effects for Status Changes
 
 - **Level-Up:**
@@ -139,10 +130,8 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">5-future-ideas-phase-3</a>
 ## 5. Future Ideas (Phase 3)
 
-<a id="">51-status-effects-buffsdebuffs</a>
 ### 5.1 Status Effects (Buffs/Debuffs)
 
 - **Base System:**
@@ -153,7 +142,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
     - Colored outlines or particle effects on the character.
     - HUD overlay icons (e.g., a small flame icon for fire damage).
 
-<a id="">52-combat-system--damage-calculation-c</a>
 ### 5.2 Combat System & Damage Calculation (C++)
 
 - **Melee & Ranged Attacks:**
@@ -170,10 +158,8 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">6-technical--implementation-details</a>
 ## 6. Technical & Implementation Details
 
-<a id="">61-engine--tools</a>
 ### 6.1 Engine & Tools
 
 - **Engine:**  
@@ -189,7 +175,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 - **Version Control:**  
   Git or Perforce for team collaboration.
 
-<a id="">62-art--assets</a>
 ### 6.2 Art & Assets
 
 - **3D Models:**  
@@ -201,7 +186,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 - **UI:**  
   A minimalistic but customizable interface (e.g., health bar, XP bar, achievements).
 
-<a id="">63-audio-optional-extension</a>
 ### 6.3 Audio (Optional Extension)
 
 - **Sound Effects:**  
@@ -212,7 +196,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">7-project-organization--roadmap</a>
 ## 7. Project Organization & Roadmap
 
 - **Phase 1: Core Gameplay**
@@ -232,7 +215,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">8-risks--challenges</a>
 ## 8. Risks & Challenges
 
 - **Performance:**  
@@ -246,7 +228,6 @@ This project aims to create a Top-Down RPG prototype in Unreal Engine. It focuse
 
 ---
 
-<a id="">9-appendix--additional-notes</a>
 ## 9. Appendix & Additional Notes
 
 - **Documentation:**  
