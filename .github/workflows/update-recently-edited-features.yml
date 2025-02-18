@@ -18,8 +18,7 @@ jobs:
         env:
           TZ: 'Europe/Berlin'
         run: |
-          sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
-          echo $TZ > /etc/timezone
+          export TZ='Europe/Berlin'
           echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
