@@ -17,17 +17,18 @@ jobs:
       - name: Create new branch for auto-update (Repo)
         run: git checkout -B update-readme
 
-      - name: Fetch Recent Feature Commits
+      - name: Retrieve recent feature commits and update readme
         run: |
           echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
           echo "|---------|-------------|------------------|" >> recent_commits.md
-          TZ=Europe/Berlin date '+%Y-%m-%d %H:%M:%S %Z' > last_run.txt
-          git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $(cat last_run.txt) |" \
-          | sed -E 's/^\| feat:[[:space:]]*/| /' \
-          >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
-
+          last_run=$(TZ=Europe/Berlin date '+%Y-%m-%d %H:%M:%S %Z')
+          echo "$last_run" > last_run.txt
+          git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $last_run |" \
+            | sed -E 's/^\| feat:[[:space:]]*/| /' \
+            >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+      
       - name: Update Repository README
         run: |
           CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
