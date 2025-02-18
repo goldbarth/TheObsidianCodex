@@ -24,7 +24,7 @@ jobs:
           echo "| Feature | Commit Date | Commit |" >> recent_commits.md
           echo "|---------|--------------|--------|" >> recent_commits.md
           REPO_URL="https://github.com/${GITHUB_REPOSITORY}"
-          git log -E --grep="^feat:" -5 --date=format:"%Y-%m-%d %H:%M:%S %Z" --pretty=format:"| %s | %ad | [%h]($REPO_URL/commit/%H) |" \
+          git log -E --grep="^feat:" -5 --date=format:"%Y-%m-%d %H:%M:%S CET" --pretty=format:"| %s | %ad | [%h]($REPO_URL/commit/%H) |" \
           | sed -E 's/^\| feat:[[:space:]]*/| /' \
           >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
 
