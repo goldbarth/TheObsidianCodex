@@ -23,7 +23,7 @@ jobs:
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
           echo "|---------|-------------|------------------|" >> recent_commits.md
-          echo "$(date '+%Y-%m-%d %H:%M:%S')" > last_run.txt
+          TZ=Europe/Berlin date '+%Y-%m-%d %H:%M:%S %Z' > last_run.txt
           git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $(cat last_run.txt) |" \
           | sed -E 's/^\| feat:[[:space:]]*/| /' \
           >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
