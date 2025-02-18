@@ -17,17 +17,21 @@ jobs:
           fetch-depth: 50
 
       - name: Retrieve recent feature commits and update readme
+        env:
+          TZ: 'Europe/Berlin'
         run: |
+          sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+          echo $TZ > /etc/timezone
           echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
           echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
           echo "|---------|-------------|------------------|" >> recent_commits.md
-          last_run=$(TZ=Europe/Berlin date '+%Y-%m-%d %H:%M:%S %Z')
+          last_run=$(date '+%Y-%m-%d %H:%M:%S %Z')
           echo "$last_run" > last_run.txt
           git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $last_run |" \
             | sed -E 's/^\| feat:[[:space:]]*/| /' \
-            >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
-      
+                        >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+          
       - name: Update Repository README
         run: |
           CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
