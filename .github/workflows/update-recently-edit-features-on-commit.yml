@@ -1,0 +1,68 @@
+﻿name: Update README on feat Commit
+
+on:
+  push:
+    branches: [main]
+    # The workflow is only executed if the commit text contains “feat:”.
+    # (Alternatively, you can also check this in the job with a condition)
+
+jobs:
+  update-readme:
+    if: contains(github.event.head_commit.message, 'feat:')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 50
+
+      - name: Retrieve recent feature commits and update readme
+        run: |
+          echo "### 🔄 Recently Worked On" > recent_commits.md
+          echo "" >> recent_commits.md
+          echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
+          echo "|---------|-------------|------------------|" >> recent_commits.md
+          echo "$(date '+%Y-%m-%d %H:%M:%S')" > last_run.txt
+          git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $(cat last_run.txt) |" \
+            | sed -E 's/^\| feat:[[:space:]]*/| /' \
+            >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+          
+      - name: Update Repository README
+        run: |
+          CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          sed -i "/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\<!-- START_RECENTLY_WORKED_ON -->\n$CONTENT\n<!-- END_RECENTLY_WORKED_ON -->" README.md
+
+      - name: Commit and Push in main Branch (Repo README)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Auto-update Recently Worked On section (feat Commit)" || exit 0
+          git push origin main
+          
+      - name: Checkout Profile Repository
+        uses: actions/checkout@v3
+        with:
+          repository: "goldbarth/goldbarth"  # GitHub-Profile
+          token: ${{ secrets.PAT_TOKEN }}
+          path: profile_repo
+          fetch-depth: 0  # Fetches the entire Git history to avoid merge conflicts
+
+      - name: Update GitHub Profile README
+        run: |
+          CONTENT=$(cat recent_commits.md | sed 's/\//\\\//g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          sed -i "/<!-- START_RECENTLY_WORKED_ON -->/,/<!-- END_RECENTLY_WORKED_ON -->/c\<!-- START_RECENTLY_WORKED_ON -->\n$CONTENT\n<!-- END_RECENTLY_WORKED_ON -->" profile_repo/README.md
+
+      - name: Commit and Push Changes (Profile README)
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          cd profile_repo
+          git config --global user.name "goldbarth"
+          git config --global user.email "felix.wahl@live.com"
+          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/goldbarth/goldbarth.git
+          git add README.md
+          git commit -m "Auto-update Recently Worked On section (feat Commit)" || exit 0
+          git push origin main
