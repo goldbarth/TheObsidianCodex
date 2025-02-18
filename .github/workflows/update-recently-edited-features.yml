@@ -21,13 +21,12 @@ jobs:
           export TZ='Europe/Berlin'
           echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
-          echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
-          echo "|---------|-------------|------------------|" >> recent_commits.md
-          last_run=$(date '+%Y-%m-%d %H:%M:%S %Z')
-          echo "$last_run" > last_run.txt
-          git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $last_run |" \
-            | sed -E 's/^\| feat:[[:space:]]*/| /' \
-            >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
+          echo "| Feature | Commit Datum | Commit |" >> recent_commits.md
+          echo "|---------|--------------|--------|" >> recent_commits.md
+          REPO_URL="https://github.com/${GITHUB_REPOSITORY}"
+          git log -E --grep="^feat:" -5 --date=format:"%Y-%m-%d %H:%M:%S %Z" --pretty=format:"| %s | %ad | [%h]($REPO_URL/commit/%H) |" \
+          | sed -E 's/^\| feat:[[:space:]]*/| /' \
+          >> recent_commits.md || echo "| No recent features | - | - |" >> recent_commits.md
 
       - name: Update Repository README
         run: |
