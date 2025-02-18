@@ -1,8 +1,8 @@
-﻿name: Update README with Recent Features
+﻿name: Update README with Recent Features (Scheduled)
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Runs every day at midnight
+    - cron: "0 * * * *"  # Runs every hour
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -14,12 +14,15 @@ jobs:
         with:
           fetch-depth: 50  # Get the last 50 commits
 
+      - name: Create new branch for auto-update (Repo)
+        run: git checkout -B update-readme
+
       - name: Fetch Recent Feature Commits
         run: |
           echo "### 🔄 Recently Worked On" > recent_commits.md
           echo "" >> recent_commits.md
-          echo "| Feature | Last Updated | Workflow Updated |" >> recent_commits.md
-          echo "|---------|--------------|------------------|" >> recent_commits.md
+          echo "| Feature | Last Commit | Workflow Updated |" >> recent_commits.md
+          echo "|---------|-------------|------------------|" >> recent_commits.md
           echo "$(date '+%Y-%m-%d %H:%M:%S')" > last_run.txt
           git log -E --grep="^feat:" -5 --pretty=format:"| %s | %ar | $(cat last_run.txt) |" \
           | sed -E 's/^\| feat:[[:space:]]*/| /' \
@@ -37,8 +40,8 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git commit -m "Auto-update Recently Worked On section (Repo)" || exit 0
-          git push origin main
+          git commit -m "Auto-update Recently Worked On section (Scheduled)" || exit 0
+          git push origin update-readme --force
 
       - name: Checkout Profile Repository
         uses: actions/checkout@v3
@@ -47,6 +50,11 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: profile_repo
           fetch-depth: 0  # Fetches the entire Git history to avoid merge conflicts
+
+      - name: Create new branch for auto-update (Profile)
+        run: | 
+          cd profile_repo
+          git checkout -B update-readme
 
       - name: Update GitHub Profile README
         run: |
@@ -62,5 +70,5 @@ jobs:
           git config --global user.email "felix.wahl@live.com"
           git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/goldbarth/goldbarth.git
           git add README.md
-          git commit -m "Auto-update Recently Worked On section (Profile)" || exit 0
-          git push origin main
+          git commit -m "Auto-update Recently Worked On section (Scheduled)" || exit 0
+          git push origin update-readme --force
